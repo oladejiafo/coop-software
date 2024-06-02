@@ -1,0 +1,55 @@
+<?php
+session_start();
+//check to see if user has logged in with a valid password
+if (!isset($_SESSION['USER_ID']) & ($_SESSION['access_lvl'] != 3))
+{
+ if ($_SESSION['access_lvl'] != 4){
+ if ($_SESSION['access_lvl'] != 5){
+$redirect = $_SERVER['PHP_SELF'];
+header("Refresh: 5; URL=login.php?redirect=$redirect");
+echo "Sorry, but you don’t have permission to view this page! You are being redirected to the login page!<br>";
+echo "(If your browser doesn’t support this, " .
+"<a href=\"login.php?redirect=$redirect\">click here</a>)";
+die();
+}
+}
+}
+ require_once 'conn.php';
+?>
+
+     <h1><b><center></center></b></h1>
+     <h2><center>Staff Due for Retirement</center></h2>
+
+<TABLE width='100%' border='1' cellpadding='0' cellspacing='0' align='center' id="table3">
+<?php
+
+ $cmbFilter=$_REQUEST["cmbFilter"];
+ $filter=$_REQUEST["filter"];
+ 
+      echo "<TR bgcolor='#D2DD8F'><TH><b><font size='2pt'> Staff Number </font></b>&nbsp;</TH><TH><b><font size='2pt'> First Name </font></b>&nbsp;</TH><TH><b><font size='2pt'> Surname </font></b>&nbsp;</TH> <TH><b><font size='2pt'> Sex </font></b>&nbsp;</TH> <TH><b><font size='2pt'> Rank </font></b>&nbsp;</TH>
+      <TH><b><font size='2pt'> Date of Birth </font></b>&nbsp;</TH> <TH><b><font size='2pt'> Date of 1st Appt </font></b>&nbsp;</TH> <TH><b><font size='2pt'> Date of Present Appt </font></b>&nbsp;&nbsp;</TH> <TH><b><font size='2pt'> State of Origin </font></b>&nbsp;&nbsp;</TH> 
+      <TH><b><font size='2pt'> LGA </font></b>&nbsp;&nbsp;</TH><TH><b><font size='2pt'> Qualification </font></b>&nbsp;&nbsp;</TH><TH><b><font size='2pt'> Present Station </font></b>&nbsp;&nbsp;</TH><TH><b><font size='2pt'> Dept </font></b>&nbsp;&nbsp;</TH></TR>";
+
+  $result = mysql_query ("SELECT `Staff Number`, `Firstname` , `Surname`, `Sex`,`Present Rank`,`DoB`,`First Appt`,`Present Appt`,`State`,`LGA`,`Qualification`, `Present Location`, `Dept`  From `staff` where (((" . date('Y') . "-year(`First Appt`)) >= 35) or ((" . date('Y') . "-year(`Dob`)) >= 60)) and date(`DoB`)<>date('0000-00-00') order by `Level` desc,`Present Appt` desc"); 
+
+  if (trim($cmbFilter)=="All")
+  {
+   $result = mysql_query ("SELECT `Staff Number`, `Firstname` , `Surname`, `Sex`,`Present Rank`,`DoB`,`First Appt`,`Present Appt`,`State`,`LGA`,`Qualification`, `Present Location`, `Dept`  From `staff` where (((" . date('Y') . "-year(`First Appt`)) >= 35) or ((" . date('Y') . "-year(`Dob`)) >= 60)) and date(`DoB`)<>date('0000-00-00') order by `Level` desc,`Present Appt` desc"); 
+  }
+  else if (trim($cmbFilter)=="By MDA")
+  {
+   $result = mysql_query ("SELECT `Staff Number`,  `Firstname` , `Surname`, `Sex`,`Present Rank`,`DoB`,`First Appt`,`Present Appt`,`State`,`LGA`,`Qualification`, `Present Location`, `Dept` From `staff` WHERE `Present Location` like '$filter%' and (((" . date('Y') . "-year(`First Appt`)) >= 35) or ((" . date('Y') . "-year(`Dob`)) >= 60)) and date(`DoB`)<>date('0000-00-00') order by `Level` desc,`Present Appt` desc");    
+  }  else if (trim($cmbFilter)=="Staff Number")
+  {
+   $result = mysql_query ("SELECT `Staff Number`,  `Firstname` , `Surname`, `Sex`,`Present Rank`,`DoB`,`First Appt`,`Present Appt`,`State`,`LGA`,`Qualification`, `Present Location`, `Dept` From `staff`  WHERE `Staff Number`='" . $filter . "' and (((" . date('Y') . "-year(`First Appt`)) >= 35) or ((" . date('Y') . "-year(`Dob`)) >= 60)) and date(`DoB`)<>date('0000-00-00') order by `Level` desc,`Present Appt` desc"); 
+  }
+
+  while(list($serviceno, $fname,$sname, $sex, $rank, $dob, $firstappt, $presentappt, $state, $lga, $qualification, $location, $dept)=mysql_fetch_row($result)) 
+   {	
+      echo "<TR><TH><font size='2pt'> $serviceno &nbsp;</font></TH><TH><font size='2pt'> $fname </a> &nbsp;</font></TH><TH><font size='2pt'> $sname </a> &nbsp;</font></TH> <TH><font size='2pt'> $sex &nbsp;</font></TH> <TH><font size='2pt'> $rank &nbsp;</font></TH>
+      <TH><font size='2pt'> $dob &nbsp;</font></TH> <TH><font size='2pt'> $firstappt &nbsp;</font></TH> <TH><font size='2pt'> $presentappt &nbsp;</font></TH> <TH><font size='2pt'> $state &nbsp;</font></TH> <TH><font size='2pt'> $lga &nbsp;</font></TH><TH><font size='2pt'> $qualification &nbsp;</font></TH><TH><font size='2pt'> $location &nbsp;</font></TH><TH><font size='2pt'> $dept &nbsp;</font></TH></TR>";
+   }
+
+?>
+</TABLE>
+<br>

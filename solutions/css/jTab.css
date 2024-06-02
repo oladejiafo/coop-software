@@ -1,0 +1,119 @@
+@charset "utf-8";
+a { outline:none; }
+.fade { width:300px; margin:20px auto; background:#EEE; padding:12px; overflow:hidden; }
+.fade .tabs { float:left; overflow:auto; }
+.fade .tabs li {
+  float:left; list-style:none; border:1px solid #444; margin:1px; -moz-border-radius:2px; }
+.fade .tabs li a {
+	display:block;
+	float:left;
+	width:16px;
+	height:16px;
+	text-align: center;
+	color:#999;
+	text-decoration:none;
+	border:1px solid #FFF;
+	background-color: #5CF377;
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+}
+.fade .tabs li:hover { margin:0; border-width:2px; }
+.fade .tabs li a.selected { border-color:#444; }
+.fade .items { clear:both; padding:6px 0; position:relative; top:0; left:0; height:1em; }
+.fade .items div { display:none; position:absolute; top:0; left:0; padding-top:6px; }
+
+/* Example Styles for Demo */
+    .etabs { margin: 0; padding: 0; }
+    .tab {
+	display: inline-block;
+	zoom:1;
+
+*display:inline;
+ 	background: #eee;
+	border: solid 1px #999;
+	border-bottom: none;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #333;
+}
+    .tab a {
+	font-size: 13px;
+	line-height: 2em;
+	display: block;
+	padding: 0 10px;
+	outline: none;
+	color: #333;
+	background-color: #D6DEE2;
+	text-decoration: none;
+}
+fieldset-claim {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#fieldset-claim {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+#fieldset-claim legend {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #0099CC; //#063;
+	margin-bottom: 6px;
+	margin-top: 12px;
+}
+#table1 #AutoNumber1 {
+	margin-top: 3px;
+}
+
+    .tab a:hover {
+	color: #000;
+	background-color: #9DB4C6; //D2FBD8;
+}
+    .tab.active {
+	background: #fff;
+	padding-top: 2px;
+	position: relative;
+	top: 1px;
+	border-color: #666;
+}
+    .tab a.active {
+	font-weight: bold;
+	background-color: #9DB4C6; //#D6DEE2; //D1EFDD;// #FFF;
+	color: #000;
+}
+    .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+#tab-container {
+	width: 95%;
+	margin-top: 8px;
+	
+}
+#tabs1-history h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+    .panel-container {
+	margin-bottom: 4px;
+}#tabs1-history a {
+	text-decoration: none;
+	color: #0D86FF;
+}
+#tabs1-stadium a {
+	text-decoration: none;
+	color: #0D86FF;
+}
+
+#tabs1-sponsor a {
+	text-decoration: none;
+	color: #0D86FF;
+}
